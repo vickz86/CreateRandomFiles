@@ -16,13 +16,24 @@ $contentFile = Get-Content -Path $pathToFile
 
 
 
+
 #if directory is equal to 0
 if($nbDir -eq 0){
     For ($i = 0;$i -lt $nbFile;$i++){
         #create the file
         $fileName = "templateFile"+$i.ToString()+".txt"
         $newFile = New-Item -Path . -Name $fileName
-        Add-Content -Path $newFile -Value $contentFile
+
+        #Create random Content for the file
+        #Get random number between 0.5 and 1
+        $randInt = Get-Random -Minimum 50 -Maximum 100
+        [float]$floatVal = $randInt *0.01
+        #get a random value from the number of line of the content file
+        [int]$numberOfLine = $contentFile.Length*$floatVal
+        #create a random content
+        $randCont = $contentFile[0..$numberOfLine]
+
+        Add-Content -Path $newFile -Value $randCont
     }
     Write-Host "files created"
 }
@@ -38,7 +49,17 @@ if($nbDir -ne 0){
             #create the file
             $fileName = "templateFile"+$a.ToString()+".txt"
             $newFile = New-Item -Path $newDire.FullName -Name $fileName
-            Add-Content -Path $newFile -Value $contentFile
+
+            #Create random Content for the file
+            #Get random number between 0.5 and 1
+            $randInt = Get-Random -Minimum 50 -Maximum 100
+            [float]$floatVal = $randInt *0.01
+            #get a random value from the number of line of the content file
+            [int]$numberOfLine = $contentFile.Length*$floatVal
+            #create a random content
+            $randCont = $contentFile[0..$numberOfLine]
+
+            Add-Content -Path $newFile -Value $randCont
         }
     }
     Write-Host "Folders created"
