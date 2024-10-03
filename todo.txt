@@ -1,0 +1,4 @@
+Create a user decided number of random file
+->choose the number of files
+-->choose the number of Directory
+-->pick the context of file from a file on the disc
