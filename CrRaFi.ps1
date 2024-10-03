@@ -4,6 +4,9 @@ if ( -not (Test-Path -Path $pathToFile)){
     Write-Host "the file to get text dont exist , Edit path in the script!"
     exit
 }
+#Get content of the file
+$contentFile = Get-Content -Path $pathToFile
+
 
 #ask the number of file you are going to create
 [int]$nbFile = Read-Host "type number of file you want to create"
@@ -12,5 +15,6 @@ if ( -not (Test-Path -Path $pathToFile)){
 For ($i = 0;$i -lt $nbFile;$i++){
     #create the file
     $fileName = "templateFile"+$i.ToString()+".txt"
-    $fileName
+    $newFile = New-Item -Path . -Name $fileName
+    Add-Content -Path $newFile -Value $contentFile
 }
